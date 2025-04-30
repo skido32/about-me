@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 70% 50.4%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  padding: 3px;
+  background: linear-gradient(
+    to right,
+    hsl(var(--primary)),
+    theme("colors.teal.500"),
+    theme("colors.amber.500"),
+    theme("colors.rose.500")
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-600 via-teal-500 to-amber-500;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-r from-violet-600/90 via-teal-500/90 to-amber-500/90;
+}
+
+.shimmer {
+  @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent;
+}
+
+.section-pattern {
+  background-color: hsla(var(--background));
+  background-image: radial-gradient(at 47% 33%, hsla(var(--primary) / 0.1) 0, transparent 59%),
+    radial-gradient(at 82% 65%, hsl(var(--secondary)) 0, transparent 55%);
+}
+
+.section-pattern-alt {
+  background-color: hsla(var(--background));
+  background-image: radial-gradient(at 0% 0%, theme("colors.violet.500" / 0.15) 0, transparent 50%),
+    radial-gradient(at 100% 100%, theme("colors.teal.500" / 0.15) 0, transparent 50%);
+}
+
+.section-pattern-dark {
+  background-color: hsla(var(--background));
+  background-image: radial-gradient(at 47% 33%, theme("colors.violet.800" / 0.3) 0, transparent 59%),
+    radial-gradient(at 82% 65%, theme("colors.teal.800" / 0.3) 0, transparent 55%);
+}

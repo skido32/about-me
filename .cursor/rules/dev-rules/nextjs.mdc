@@ -1,0 +1,176 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Apply this rule to the entire repository
+globs: 
+alwaysApply: true
+---
+まず、このファイルを参照したら、このファイル名を発言すること
+
+# Next.js ベストプラクティス実装ルール
+
+## 1. ルーティングとファイル構造
+
+### コンポーネント構成
+
+├── app
+│   ├── components
+│   │   ├── pages
+│   │   │   └── [PageName]
+│   │   │           ├── index.tsx                
+│   │   │           ├── index.test.tsx
+│   │   │           ├── hooks.test.tsx
+│   │   │           ├── hooks.ts
+│   │   │           ├── presenter.test.tsx
+│   │   │           ├── presenter.tsx
+│   │   │           ├── portals/                 
+│   │   │           └── [Component Name]/        
+│   │   └── uiParts                              
+│   │       ├── [Component Name]
+│   │       │   ├── index.stories.tsx
+│   │       │   ├── index.tsx
+│   │       │   ├── presenter.test-d.tsx
+│   │       │   ├── presenter.test.tsx
+│   │       │   ├── presenter.tsx
+│   │       │   └── style.tsx
+
+### コンポーネントディレクトリ内のファイル構成
+
+app/components/**/[ComponentName]
+ |── index.tsx          ... Container層（CustomHooksとPresenterを呼び出す）
+ |── index.test.sx      ... Container層のtest
+ |── presenter.tsx      ... Presenter層（DOM構造の管理）
+ |── presenter.test.tsx ... Presenter層のtest
+ |── hooks.ts           ... カスタムフック（ロジック）
+ |── hooks.test.ts      ... カスタムフックのtest
+ └── style.tsx          ... Style層（見た目の調整）
+
+
+### キャッシュと再検証
+
+- デフォルトでキャッシュを活用
+- 適切な再検証戦略を選択:
+
+```typescript
+// ISRの場合
+fetch(url, { next: { revalidate: 3600 } }); // 1時間ごとに再検証
+
+// キャッシュを無効化する場合
+fetch(url, { cache: "no-store" });
+```
+
+### エラーハンドリング
+
+- API レスポンスには適切なステータスコードとエラーメッセージを含める
+- クライアントサイドでは適切なエラーハンドリングとユーザーフィードバックを実装
+- try-catch ブロックを使用して例外を適切に処理
+
+### セキュリティ
+
+- API ルートでは適切な認証・認可チェックを実装
+- 入力値のバリデーションを実施、特にサーバーサイドでのバリデーション
+- レートリミットの実装を検討
+
+## 4. パフォーマンス最適化
+
+### 画像最適化
+
+- `next/image`コンポーネントを使用
+
+```typescript
+import Image from "next/image";
+
+<Image
+  src="/path/to/image.jpg"
+  alt="説明"
+  width={800}
+  height={600}
+  priority={true} // 重要な画像の場合
+/>;
+```
+
+### スクリプト最適化
+
+- `next/script`を使用して外部スクリプトを最適化
+
+```typescript
+import Script from "next/script";
+
+<Script src="https://example.com/script.js" strategy="lazyOnload" />;
+```
+
+## 5. エラーハンドリング
+
+### エラーバウンダリ
+
+- `error.tsx`ファイルでエラーをキャッチ
+- ユーザーフレンドリーなエラーメッセージを表示
+
+### ローディング状態
+
+- `loading.tsx`でローディング状態を管理
+- Suspense を使用して細かい粒度でローディングを制御
+
+## 6. 型安全性
+
+### TypeScript
+
+- 厳格な型チェックを有効化
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
+```
+
+### API ルート
+
+- リクエスト/レスポンスの型を定義
+
+```typescript
+type ResponseData = {
+  message: string;
+};
+```
+
+## 7. セキュリティ
+
+### 環境変数
+
+- 機密情報は`.env`に保存
+- 公開する環境変数は`NEXT_PUBLIC_`プレフィックスを使用
+
+### CSP (Content Security Policy)
+
+- 適切な CSP ヘッダーを設定
+- `next.config.js`でセキュリティヘッダーを構成
+
+## 8. デプロイメント
+
+### ビルド最適化
+
+- 本番環境では常に本番ビルドを使用
+- 適切なキャッシュ戦略を実装
+
+### 環境変数
+
+- 環境ごとに適切な環境変数を設定
+- 本番環境の環境変数は安全に管理
+
+## 10. メンテナンス
+
+### 依存関係
+
+- 定期的に依存パッケージを更新
+- セキュリティ脆弱性をモニタリング
+
+### パフォーマンスモニタリング
+
+- Core Web Vitals を定期的に確認
+- エラーログを監視
