@@ -22,7 +22,7 @@ export default function Footer() {
               className="h-8 w-8 rounded-full bg-violet-500/10 hover:bg-violet-500/20 text-violet-600 dark:text-violet-400"
               asChild
             >
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <a href="https://github.com/skido32" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <Github className="h-4 w-4" />
               </a>
             </Button>
@@ -33,7 +33,7 @@ export default function Footer() {
               asChild
             >
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/shunsuke-kido-155b45362/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -47,7 +47,7 @@ export default function Footer() {
               className="h-8 w-8 rounded-full bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400"
               asChild
             >
-              <a href="mailto:your.email@example.com" aria-label="Email">
+              <a href="mailto:souen0823@gmail.com" aria-label="Email">
                 <Mail className="h-4 w-4" />
               </a>
             </Button>
