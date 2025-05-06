@@ -7,23 +7,23 @@ assignees: ''
 
 ---
 
-## 🔍 概要
-<!-- 例: ログイン時にエラーが出る -->
+## 🔍 Overview  
+<!-- Example: Error occurs during login -->
 
-## ✅ やること（チェックリスト）
-<!-- 例:
-- [ ] エラーメッセージを再現
-- [ ] サーバー側のログ確認
+## ✅ To-Do (Checklist)  
+<!-- Example:
+- [ ] Reproduce the error message  
+- [ ] Check server logs  
 -->
 
-- [ ] 
-- [ ] 
+- [ ]  
+- [ ]  
 
-## 💥 現象（バグの場合）
-<!-- バグなら再現手順を。例:
-1. `/login` にアクセス
-2. 正しいパスワードを入れてもログインできない
+## 💥 Issue Description (for bugs)  
+<!-- If it's a bug, include steps to reproduce. Example:  
+1. Access `/login`  
+2. Enter the correct password but cannot log in  
 -->
 
-## 💡 背景・メモ
-<!-- なぜ対応するか、参考資料URLなど -->
+## 💡 Background / Notes  
+<!-- Why this issue needs to be addressed, reference URLs, etc. -->
