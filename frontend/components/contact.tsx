@@ -87,13 +87,13 @@ export default function Contact() {
                     className="rounded-full bg-violet-500/10 hover:bg-violet-500/20 text-violet-600 dark:text-violet-400 border-none"
                     asChild
                   >
-                    <a href="mailto:your.email@example.com">
+                    <a href="mailto:souen0823@gmail.com">
                       <Mail className="h-4 w-4" />
                     </a>
                   </Button>
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-sm text-muted-foreground">your.email@example.com</p>
+                    <p className="text-sm text-muted-foreground">souen0823@gmail.com</p>
                   </div>
                 </div>
 
@@ -104,13 +104,13 @@ export default function Contact() {
                     className="rounded-full bg-teal-500/10 hover:bg-teal-500/20 text-teal-600 dark:text-teal-400 border-none"
                     asChild
                   >
-                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/skido32" target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4" />
                     </a>
                   </Button>
                   <div>
                     <p className="font-medium">GitHub</p>
-                    <p className="text-sm text-muted-foreground">github.com/yourusername</p>
+                    <p className="text-sm text-muted-foreground">github.com/skido32</p>
                   </div>
                 </div>
 
@@ -121,13 +121,13 @@ export default function Contact() {
                     className="rounded-full bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 border-none"
                     asChild
                   >
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.linkedin.com/in/shunsuke-kido-155b45362/" target="_blank" rel="noopener noreferrer">
                       <Linkedin className="h-4 w-4" />
                     </a>
                   </Button>
                   <div>
                     <p className="font-medium">LinkedIn</p>
-                    <p className="text-sm text-muted-foreground">linkedin.com/in/yourusername</p>
+                    <p className="text-sm text-muted-foreground">linkedin.com/in/shunsuke-kido-155b45362</p>
                   </div>
                 </div>
               </CardContent>

@@ -51,7 +51,7 @@ export default function Hero() {
             </div>
 
             <div className="flex items-center gap-4 pt-4">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <a href="https://github.com/skido32" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -61,7 +61,7 @@ export default function Hero() {
                 </Button>
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/shunsuke-kido-155b45362/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -74,7 +74,7 @@ export default function Hero() {
                   <Linkedin className="h-5 w-5" />
                 </Button>
               </a>
-              <a href="mailto:your.email@example.com" aria-label="Email">
+              <a href="mailto:souen0823@gmail.com" aria-label="Email">
                 <Button
                   variant="ghost"
                   size="icon"
