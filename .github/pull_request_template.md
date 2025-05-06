@@ -1,22 +1,34 @@
-## 📝 概要
+## 📝 Summary  
+<!-- Example:
+Briefly describe what you changed.
+Added feature X, fixed bug Y.
+-->
 
-何を変更したか簡潔に記述してください。
+## 🔧 Changes  
+<!-- Example:
+- Added feature A
+- Fixed bug B
+- Refactored module C
+-->
 
-## 🔧 変更内容
+-  
+-  
 
-- 機能Aの追加
-- バグBの修正
-- リファクタC など
+## 📌 Related Issues  
+<!-- Example:
+Close #12
+-->
 
-## 📌 関連Issue
+## 🧪 Test Plan  
+<!-- Example:
+- [ ] Verified manually that the feature works  
+- [ ] Confirmed that existing unit tests pass
+-->
 
-Close #12 など
+- [ ]  
+- [ ]  
 
-## 🧪 テスト内容
-
-- [ ] 手動確認した機能が動作する
-- [ ] 既存のユニットテストに影響なし
-
-## 💭 補足メモ（任意）
-
-気になってること、改善余地、今後の予定など
+## 💭 Notes (Optional)  
+<!-- Example:
+Any additional context, known issues, future improvements, etc.
+-->
