@@ -8,7 +8,9 @@ RUN apk add --no-cache \
     tzdata \
     nodejs \
     yarn \
-    yaml-dev
+    yaml-dev \
+    chromium \
+    chromium-chromedriver
 
 WORKDIR /app
 
