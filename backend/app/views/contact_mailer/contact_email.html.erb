@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>ポートフォリオサイトからのお問い合わせ</h1>
+
+  <div style="margin: 20px 0; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
+    <h2>■ 送信者情報</h2>
+    <p><strong>メールアドレス:</strong> <%= @sender_email %></p>
+    <p><strong>送信日時:</strong> <%= @sent_at.strftime('%Y年%m月%d日 %H:%M') %></p>
+    <p><strong>IPアドレス:</strong> <%= @ip_address %></p>
+    <p><strong>ユーザーエージェント:</strong> <%= @user_agent %></p>
+  </div>
+
+  <div style="margin: 20px 0; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
+    <h2>■ メッセージ内容</h2>
+    <div style="white-space: pre-wrap;"><%= @message %></div>
+  </div>
+
+  <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+    <p>このメッセージに返信する場合は、上記のメールアドレス宛にご返信ください。</p>
+  </div>
+</body>
+</html> 
