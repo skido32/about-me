@@ -3,8 +3,6 @@ FROM ruby:3.2-alpine
 # 必要なパッケージのインストール
 RUN apk add --no-cache \
     build-base \
-    mysql-dev \
-    mysql-client \
     tzdata \
     nodejs \
     yarn \
