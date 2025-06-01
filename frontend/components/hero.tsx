@@ -6,25 +6,18 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export default function Hero() {
-  const scrollToContact = () => {
-    const element = document.getElementById("contact")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
-  const scrollToProjects = () => {
-    const element = document.getElementById("projects")
+  const scrollToElement = (elementId: string) => {
+    const element = document.getElementById(elementId)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-20 px-4 section-pattern dark:section-pattern-dark overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center py-20 px-4 section-pattern dark:section-pattern-dark">
       <div className="absolute inset-0 bg-grid-small-black/[0.2] dark:bg-grid-small-white/[0.2] bg-[size:30px_30px] -z-10" />
 
-      <div className="container mx-auto">
+      <div className="container mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <motion.div
             className="flex-1 space-y-6"
@@ -42,10 +35,10 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button onClick={scrollToContact} size="lg" className="gradient-bg">
+              <Button onClick={() => scrollToElement("contact")} size="lg" className="gradient-bg">
                 Contact Me
               </Button>
-              {/* <Button onClick={scrollToProjects} variant="outline" size="lg" className="gradient-border">
+              {/* <Button onClick={() => scrollToElement("projects")} variant="outline" size="lg" className="gradient-border">
                 View Projects
               </Button> */}
             </div>
@@ -105,23 +98,23 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <Button
-            variant="ghost"
-            size="icon"
-            className="animate-bounce rounded-full bg-primary/10 hover:bg-primary/20"
-            onClick={() => document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" })}
-          >
-            <ArrowDown className="h-6 w-6 text-primary" />
-          </Button>
-        </motion.div>
       </div>
+
+      <motion.div
+        className="absolute bottom-1 left-1/2 transform -translate-x-1/2 z-50 pointer-events-auto"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
+        <Button
+          variant="ghost"
+          size="icon"
+          className="animate-bounce rounded-full bg-primary/10 hover:bg-primary/20"
+          onClick={() => scrollToElement("skills")}
+        >
+          <ArrowDown className="h-6 w-6 text-primary" />
+        </Button>
+      </motion.div>
     </section>
   )
 }
