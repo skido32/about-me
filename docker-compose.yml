@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   frontend:
@@ -11,11 +11,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     env_file:
-      - ./.env
-    environment:
-      - NODE_ENV=development
-      - NEXT_PUBLIC_API_URL=${FRONTEND_NEXT_PUBLIC_API_URL}
-      - NEXT_PUBLIC_SITE_URL=${FRONTEND_NEXT_PUBLIC_SITE_URL}
+      - ./frontend/.env
     depends_on:
       - backend
 
@@ -27,12 +23,7 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
+      - /app/node_modules
+      - /app/tmp
     env_file:
-      - ./.env
-    environment:
-      - RAILS_ENV=development
-      - RAILS_MASTER_KEY=${BACKEND_RAILS_MASTER_KEY}
-      - RAILS_SERVE_STATIC_FILES=${BACKEND_RAILS_SERVE_STATIC_FILES}
-      - RAILS_LOG_TO_STDOUT=${BACKEND_RAILS_LOG_TO_STDOUT}
-      - GMAIL_USERNAME=${BACKEND_GMAIL_USERNAME}
-      - GMAIL_PASSWORD=${BACKEND_GMAIL_PASSWORD}
+      - ./backend/.env
