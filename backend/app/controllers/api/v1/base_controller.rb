@@ -1,6 +1,7 @@
 module Api
   module V1
     class BaseController < ApplicationController
+      include ActionController::MimeResponds
       respond_to :json
 
       private
