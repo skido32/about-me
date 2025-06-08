@@ -37,7 +37,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold">
-          About Me
+          About Kido
         </Link>
 
         <div className="hidden md:flex items-center space-x-6">
