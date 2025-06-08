@@ -2,6 +2,16 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Build時に受け取る環境変数をARGで宣言
+ARG NODE_ENV
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_SITE_URL
+
+# ENVにセット
+ENV NODE_ENV=$NODE_ENV
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+
 # pnpmを最新版にアップデート
 RUN npm install -g pnpm@latest
 
@@ -16,7 +26,5 @@ COPY . .
 
 # 本番用ビルド
 RUN pnpm run build
-
-EXPOSE 3000
 
 CMD ["pnpm", "start"] 
