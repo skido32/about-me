@@ -9,6 +9,7 @@ import Experience from "@/components/experience"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
+// import GitHubActivity from "@/components/github-activity"
 
 export default function Home() {
   return (
