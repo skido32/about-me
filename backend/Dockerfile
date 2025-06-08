@@ -19,8 +19,5 @@ RUN bundle config set --local force_ruby_platform true && \
 # アプリケーションのコピー
 COPY . .
 
-# ポートの設定
-EXPOSE 8000
-
 # サーバーの起動
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "8000"] 
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
