@@ -11,6 +11,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
 export default function Contact() {
   const { toast } = useToast()
   const [formData, setFormData] = useState({
@@ -31,7 +33,7 @@ export default function Contact() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("http://localhost:8000/api/v1/contact", {
+      const response = await fetch(`${API_URL}/api/v1/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
