@@ -106,36 +106,36 @@ export default function Header() {
             >
               Skills
             </button>
-            <button
+            {/* <button
               onClick={() => scrollToSection("projects")}
               className="text-lg font-medium py-2 hover:text-primary transition-colors"
             >
               Projects
-            </button>
+            </button> */}
             <button
               onClick={() => scrollToSection("experience")}
               className="text-lg font-medium py-2 hover:text-primary transition-colors"
             >
               Experience
             </button>
-            <button
+            {/* <button
               onClick={() => scrollToSection("blog")}
               className="text-lg font-medium py-2 hover:text-primary transition-colors"
             >
               Blog
-            </button>
-            <button
+            </button> */}
+            {/* <button
               onClick={() => scrollToSection("github")}
               className="text-lg font-medium py-2 hover:text-primary transition-colors"
             >
               GitHub
-            </button>
-            <button
+            </button> */}
+            {/* <button
               onClick={() => scrollToSection("events")}
               className="text-lg font-medium py-2 hover:text-primary transition-colors"
             >
               Events
-            </button>
+            </button> */}
             <button
               onClick={() => scrollToSection("contact")}
               className="text-lg font-medium py-2 hover:text-primary transition-colors"
