@@ -20,4 +20,4 @@ RUN bundle config set --local force_ruby_platform true && \
 COPY . .
 
 # サーバーの起動
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+CMD ["sh", "-c", "mkdir -p tmp/pids && bundle exec puma -C config/puma.rb"]
