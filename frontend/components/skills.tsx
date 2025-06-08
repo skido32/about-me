@@ -49,9 +49,9 @@ export default function Skills() {
 
         <Tabs defaultValue="languages" className="w-full max-w-4xl mx-auto">
           <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="languages">Languages</TabsTrigger>
-            <TabsTrigger value="frameworks">Frameworks & Libraries</TabsTrigger>
-            <TabsTrigger value="tools">Tools & Others</TabsTrigger>
+            <TabsTrigger value="languages" className="text-sm sm:text-base">Lang</TabsTrigger>
+            <TabsTrigger value="frameworks" className="text-sm sm:text-base">Frameworks</TabsTrigger>
+            <TabsTrigger value="tools" className="text-sm sm:text-base">Tools</TabsTrigger>
           </TabsList>
 
           <TabsContent value="languages">
