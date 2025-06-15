@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'contact', to: 'contact#create'
+      get 'contact/test', to: 'contact#test'
     end
   end
 

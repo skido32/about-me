@@ -14,6 +14,10 @@ module Api
         Rails.logger.error("メール送信エラー: #{e.message}")
         render json: { status: 'error', message: 'メールの送信に失敗しました' }, status: :unprocessable_entity
       end
+
+      def test
+        render json: { status: 'success', message: 'test' }
+      end
     end
   end
 end 
