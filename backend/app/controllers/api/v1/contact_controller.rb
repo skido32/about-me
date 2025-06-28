@@ -15,5 +15,9 @@ module Api
         render json: { status: 'error', message: 'メールの送信に失敗しました' }, status: :unprocessable_entity
       end
     end
+
+    def test
+      render json: { status: 'success', message: 'テストメールを送信しました' }
+    end
   end
 end 
