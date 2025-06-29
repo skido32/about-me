@@ -6,8 +6,19 @@ import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ArrowLeft, Share2, Twitter, Linkedin, Facebook } from "lucide-react"
 
+// Article型を暫定定義
+export type Article = {
+  title: string;
+  tags: string[];
+  date: string;
+  readTime: string;
+  image?: string;
+  content: string;
+  excerpt?: string;
+};
+
 export type ArticleHeaderProps = {
-  article: any
+  article: Article;
 }
 
 export default function ArticleHeader({ article }: ArticleHeaderProps) {
