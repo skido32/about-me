@@ -1,10 +1,6 @@
-"use client"
-
-import { useParams, notFound } from "next/navigation"
-import { useState, useEffect } from "react"
+import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { Calendar, Clock, Tag, ArrowLeft, ArrowRight, Share2, Twitter, Linkedin, Facebook } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -15,6 +11,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import ArticleHeader from "./ArticleHeader"
 
 // Sample blog posts data - same as in blog/page.tsx
 const allArticles = [
@@ -93,36 +90,20 @@ const allArticles = [
   },
 ]
 
-export default function BlogPost() {
-  const params = useParams<{ slug: string }>()
-  const [article, setArticle] = useState<any>(null)
-  const [nextArticle, setNextArticle] = useState<any>(null)
-  const [prevArticle, setPrevArticle] = useState<any>(null)
+export async function generateStaticParams() {
+  return allArticles.map(article => ({ slug: article.slug }))
+}
 
-  useEffect(() => {
-    // Find the current article based on slug
-    const currentIndex = allArticles.findIndex((article) => article.slug === params.slug)
+export default function BlogPost({ params }: { params: { slug: string } }) {
+  const currentIndex = allArticles.findIndex((article) => article.slug === params.slug)
 
-    if (currentIndex === -1) {
-      // If article not found, force a 404
-      notFound()
-    }
-
-    setArticle(allArticles[currentIndex])
-
-    // Set next and previous articles
-    if (currentIndex > 0) {
-      setPrevArticle(allArticles[currentIndex - 1])
-    }
-
-    if (currentIndex < allArticles.length - 1) {
-      setNextArticle(allArticles[currentIndex + 1])
-    }
-  }, [params.slug])
-
-  if (!article) {
-    return null // This will be shown briefly while useEffect runs
+  if (currentIndex === -1) {
+    notFound()
   }
+
+  const article = allArticles[currentIndex]
+  const prevArticle = currentIndex > 0 ? allArticles[currentIndex - 1] : null
+  const nextArticle = currentIndex < allArticles.length - 1 ? allArticles[currentIndex + 1] : null
 
   // Function to format content with paragraphs
   const formatContent = (content: string) => {
@@ -141,85 +122,14 @@ export default function BlogPost() {
         {/* Article Header */}
         <section className="pt-32 pb-16 px-4 section-pattern">
           <div className="container mx-auto max-w-4xl">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <div className="flex justify-between items-center mb-8">
-                <Button variant="ghost" className="group" asChild>
-                  <Link href="/blog">
-                    <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                    Back to Blog
-                  </Link>
-                </Button>
-
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <Share2 className="h-4 w-4" />
-                      <span className="sr-only">Share article</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem className="cursor-pointer">
-                      <Twitter className="mr-2 h-4 w-4 text-[#1DA1F2]" />
-                      <span>Share on Twitter</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      <Linkedin className="mr-2 h-4 w-4 text-[#0A66C2]" />
-                      <span>Share on LinkedIn</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      <Facebook className="mr-2 h-4 w-4 text-[#1877F2]" />
-                      <span>Share on Facebook</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-
-              <span className="inline-block px-3 py-1 rounded-full bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300 text-sm font-medium mb-4">
-                {article.tags[0]}
-              </span>
-
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{article.title}</h1>
-
-              <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
-                <div className="flex items-center space-x-4">
-                  <Avatar>
-                    <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Author" />
-                    <AvatarFallback>YN</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-medium">Your Name</p>
-                    <div className="flex items-center text-muted-foreground text-sm">
-                      <Calendar className="h-3 w-3 mr-1" />
-                      <span>{article.date}</span>
-                      <span className="mx-2">•</span>
-                      <Clock className="h-3 w-3 mr-1" />
-                      <span>{article.readTime}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {article.tags.map((tag: string) => (
-                    <Badge key={tag} variant="outline" className="bg-background/80 backdrop-blur-sm">
-                      <Tag className="h-3 w-3 mr-1" />
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+            <ArticleHeader article={article} />
           </div>
         </section>
 
         {/* Featured Image */}
         <section className="pb-12">
           <div className="container mx-auto max-w-4xl px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-72 md:h-96 rounded-lg overflow-hidden shadow-lg"
-            >
+            <div className="relative h-72 md:h-96 rounded-lg overflow-hidden shadow-lg">
               <Image
                 src={article.image || "/placeholder.svg?height=600&width=1200"}
                 alt={article.title}
@@ -227,21 +137,16 @@ export default function BlogPost() {
                 className="object-cover"
                 priority
               />
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Article Content */}
         <section className="py-12">
           <div className="container mx-auto max-w-3xl px-4">
-            <motion.article
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="prose prose-lg dark:prose-invert max-w-none"
-            >
+            <div className="prose prose-lg dark:prose-invert max-w-none">
               {formatContent(article.content)}
-            </motion.article>
+            </div>
 
             {/* Tags */}
             <div className="mt-12 flex flex-wrap gap-2">
@@ -327,39 +232,33 @@ export default function BlogPost() {
                 .filter((a) => a.tags.some((tag) => article.tags.includes(tag)))
                 .slice(0, 3)
                 .map((relatedArticle, index) => (
-                  <motion.div
+                  <div
                     key={relatedArticle.slug}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="relative h-40 overflow-hidden"
                   >
-                    <Card className="h-full flex flex-col overflow-hidden border-none shadow-md">
-                      <div className="relative h-40 overflow-hidden">
-                        <Image
-                          src={relatedArticle.image || "/placeholder.svg"}
-                          alt={relatedArticle.title}
-                          fill
-                          className="object-cover"
-                        />
+                    <Image
+                      src={relatedArticle.image || "/placeholder.svg"}
+                      alt={relatedArticle.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <CardContent className="flex flex-col flex-grow p-5">
+                      <div className="mb-2 flex items-center text-xs text-muted-foreground">
+                        <Calendar className="h-3 w-3 mr-1" />
+                        <span>{relatedArticle.date}</span>
                       </div>
-                      <CardContent className="flex flex-col flex-grow p-5">
-                        <div className="mb-2 flex items-center text-xs text-muted-foreground">
-                          <Calendar className="h-3 w-3 mr-1" />
-                          <span>{relatedArticle.date}</span>
-                        </div>
-                        <Link href={`/blog/${relatedArticle.slug}`} className="hover:underline">
-                          <h3 className="font-bold mb-2 line-clamp-2">{relatedArticle.title}</h3>
-                        </Link>
-                        <p className="text-sm text-muted-foreground line-clamp-3 flex-grow">{relatedArticle.excerpt}</p>
-                        <Link
-                          href={`/blog/${relatedArticle.slug}`}
-                          className="mt-4 text-sm font-medium text-primary hover:underline"
-                        >
-                          Read more
-                        </Link>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                      <Link href={`/blog/${relatedArticle.slug}`} className="hover:underline">
+                        <h3 className="font-bold mb-2 line-clamp-2">{relatedArticle.title}</h3>
+                      </Link>
+                      <p className="text-sm text-muted-foreground line-clamp-3 flex-grow">{relatedArticle.excerpt}</p>
+                      <Link
+                        href={`/blog/${relatedArticle.slug}`}
+                        className="mt-4 text-sm font-medium text-primary hover:underline"
+                      >
+                        Read more
+                      </Link>
+                    </CardContent>
+                  </div>
                 ))}
             </div>
           </div>
